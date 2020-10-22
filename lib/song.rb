@@ -1,54 +1,50 @@
 require 'pry'
 
-class Song  
-  attr_accessor :name, :artist, :genre 
+class Song
+  attr_accessor :name, :artist, :genre
   
   @@count = 0
-  @@artists = []
   @@genres = []
-  @@genre_count = {}
-  @@artist_count = {}
+  @@artists = []
+  
   
   def initialize(name, artist, genre)
-    @name = name 
-    @artist = artist 
-    @genre = genre 
+    @name = name
+    @artist = artist
+    @genre = genre
     
-    
-    @@count += 1 
-    @@genres << genre 
+    @@count += 1
+    @@genres << genre  
     @@artists << artist
-    
-  end 
+
+  end
   
-  def self.count 
+  def self.count
     @@count
-  end 
+  end
   
-  def self.genres 
-    @@genres.uniq 
-  end 
+  def self.genres
+    uniq_genres = @@genres.uniq
+  end
   
-  def self.artists 
-    @@artists.uniq
-  end 
+  def self.artists
+    uniq_artists = @@artists.uniq
+  end
   
-  def self.genre_count 
-    count = Hash.new(0)
+  def self.genre_count
+    g_count = {}
     @@genres.each do |genre|
-      count[genre] += 1 
-    end 
-    count 
-  end 
+      g_count[genre] = @@genres.count(genre)
+    end
+    g_count
+  end
   
   def self.artist_count
-    count = Hash.new(0)
+    a_count = {}
     @@artists.each do |artist|
-      count[artist] += 1 
-    end 
-    count 
-  end 
+      a_count[artist] = @@artists.count(artist)
+    end
+    a_count
+  end
   
-end 
-
-
+end
